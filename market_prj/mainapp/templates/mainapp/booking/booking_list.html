@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Мои бронирования{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Мои бронирования</h2>
+
+    {% if bookings %}
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>Номер</th>
+                    <th>Заезд</th>
+                    <th>Выезд</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.room }}</td>
+                    <td>{{ booking.check_in }}</td>
+                    <td>{{ booking.check_out }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{% url 'orderapp:order_create' %}" class="btn btn-primary">
+            Оформить заказ
+        </a>
+    {% else %}
+        <div class="alert alert-info mt-3">
+            У вас пока нет активных бронирований
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+
+

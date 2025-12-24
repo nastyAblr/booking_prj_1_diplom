@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Отель{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <h2>Отель</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            {{ form.country.label_tag }}
+            {{ form.country }}
+            {% if form.country.errors %}
+                <div class="text-danger">{{ form.country.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.region.label_tag }}
+            {{ form.region }}
+            {% if form.region.errors %}
+                <div class="text-danger">{{ form.region.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.name.label_tag }}
+            {{ form.name }}
+            {% if form.name.errors %}
+                <div class="text-danger">{{ form.name.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.description.label_tag }}
+            {{ form.description }}
+            {% if form.description.errors %}
+                <div class="text-danger">{{ form.description.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.rating.label_tag }}
+            {{ form.rating }}
+            {% if form.rating.errors %}
+                <div class="text-danger">{{ form.rating.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.main_image.label_tag }}
+            {{ form.main_image }}
+            {% if form.main_image.errors %}
+                <div class="text-danger">{{ form.main_image.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="mb-3 form-check">
+            {{ form.is_active }}
+            {{ form.is_active.label_tag }}
+        </div>
+
+        <button type="submit" class="btn btn-success">Сохранить</button>
+        <a href="{% url 'mainapp:hotel_list' %}" class=".btn-clean">Назад</a>
+
+    </form>
+
+</div>
+{% endblock %}
+

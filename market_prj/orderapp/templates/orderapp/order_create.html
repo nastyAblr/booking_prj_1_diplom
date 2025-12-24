@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Оформление заказа{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Ваши бронирования для оформления заказа</h2>
+
+    {% if bookings %}
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>Номер</th>
+                    <th>Отель</th>
+                    <th>С даты</th>
+                    <th>По дату</th>
+                    <th>Цена за ночь</th>
+                    <th>Ночей</th>
+                    <th>Итого</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for b in bookings %}
+                <tr>
+                    <td>{{ b.room.room_type }}</td>
+                    <td>{{ b.room.hotel.name }}</td>
+                    <td>{{ b.check_in }}</td>
+                    <td>{{ b.check_out }}</td>
+                    <td>{{ b.room.price_per_night }} ₽</td>
+                    <td>{{ b.nights }}</td>
+                    <td>{{ b.total_cost }} ₽</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Оформить заказ</button>
+        </form>
+    {% else %}
+        <p>У вас нет активных бронирований.</p>
+        <a href="{% url 'mainapp:hotel_list' %}" class="btn btn-secondary mt-2">Выбрать номера</a>
+    {% endif %}
+</div>
+{% endblock %}

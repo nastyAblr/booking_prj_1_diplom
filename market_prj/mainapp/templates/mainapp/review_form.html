@@ -1,0 +1,32 @@
+<form method="post">
+    {% csrf_token %}
+    {{ form.hotel.as_hidden }}
+
+    <div class="mb-3">
+        {{ form.hotel.label_tag }}
+        {{ form.hotel }}
+        {% if form.hotel.errors %}
+            <div class="text-danger">{{ form.hotel.errors }}</div>
+        {% endif %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.comment.label_tag }}
+        {{ form.comment }}
+        {% if form.comment.errors %}
+            <div class="text-danger">{{ form.comment.errors }}</div>
+        {% endif %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.rating.label_tag }}
+        {{ form.rating }}
+        {% if form.rating.errors %}
+            <div class="text-danger">{{ form.rating.errors }}</div>
+        {% endif %}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a href="{% url 'mainapp:hotel_detail' hotel.id %}" class="btn btn-secondary mt-3">Назад</a>
+</form>
+

@@ -1,0 +1,40 @@
+/* === КАРУСЕЛЬ: выше и уже === */
+#carouselExampleIndicators {
+    height: 420px;          /* стало выше */
+    max-width: 1100px;       /* уже, чем экран */
+    margin: 0 auto;         /* по центру */
+    overflow: hidden;
+}
+
+/* Слайды */
+#carouselExampleIndicators .carousel-item {
+    height: 320px;
+}
+
+/* Картинки */
+#carouselExampleIndicators img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+<style>
+.btn-clean {
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #f8f9fa;
+    color: #333;
+    text-decoration: none;
+}
+.btn-clean:hover {
+    background: #e9ecef;
+}
+</style>
+
+
+/* Отступ для footer */
+footer {
+    margin-top: 40px; /* теперь работает */
+}

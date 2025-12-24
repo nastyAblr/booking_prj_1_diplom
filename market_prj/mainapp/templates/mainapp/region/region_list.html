@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Регионы{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Список регионов</h2>
+
+
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Страна</th>
+            <th>Регион</th>
+            <th>Описание</th>
+
+
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for region in regions %}
+            <tr>
+                <td>{{ region.country.name }}</td>
+                <td>{{ region.name }}</td>
+                <td>{{ region.description }}</td>
+
+
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}

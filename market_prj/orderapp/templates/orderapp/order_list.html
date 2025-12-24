@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Мои заказы{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Мои заказы</h2>
+
+    {% if orders %}
+        {% for order in orders %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Заказ №{{ order.id }}</h5>
+                    <p class="card-text">
+                        Статус:
+                        <span class="badge bg-secondary">
+                            {{ order.get_status_display }}
+                        </span>
+                    </p>
+                    <p class="card-text">
+                        Сумма: <strong>{{ order.total_cost }}</strong>
+                    </p>
+
+                    <a href="{% url 'orderapp:order_detail' order.id %}"
+                       class="btn btn-outline-primary btn-sm">
+                        Подробнее
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-info">
+            У вас пока нет заказов
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

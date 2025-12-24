@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}{{ room.room_type }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <h2>{{ room.room_type }}</h2>
+
+    {% if room.image %}
+        <div class="mb-3">
+            <img src="{{ room.image.url }}" class="img-fluid rounded">
+        </div>
+    {% endif %}
+
+    <ul class="list-group mb-3">
+        <li class="list-group-item"><strong>Отель:</strong> {{ room.hotel.name }}</li>
+        <li class="list-group-item"><strong>Описание:</strong> {{ room.description|default:"Нет описания" }}</li>
+        <li class="list-group-item"><strong>Цена за ночь:</strong> {{ room.price_per_night }} ₽</li>
+        <li class="list-group-item"><strong>Доступно:</strong> {{ room.available }}</li>
+    </ul>
+
+    {# 👇 ВОТ ЗДЕСЬ — блок кнопок #}
+    <div class="d-flex gap-2">
+        <a href="{% url 'mainapp:room_list' room.hotel.id %}"
+           class=".btn-clean">
+            Назад к номерам
+        </a>
+
+        {% if user.is_authenticated %}
+            <a href="{% url 'mainapp:booking_create' %}?room={{ room.id }}"
+               class=".btn-clean">
+                Забронировать
+            </a>
+        {% else %}
+            <a href="{% url 'login' %}"
+               class=".btn-clean">
+                Войти, чтобы забронировать
+            </a>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}
+
+
+

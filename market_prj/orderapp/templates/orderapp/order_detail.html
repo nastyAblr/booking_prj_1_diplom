@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Заказ №{{ order.id }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Заказ №{{ order.id }}</h2>
+
+    <p>
+        Статус:
+        <span class="badge bg-info">
+            {{ order.get_status_display }}
+        </span>
+    </p>
+
+    <table class="table table-bordered mt-3">
+        <thead>
+            <tr>
+                <th>Номер</th>
+                <th>Заезд</th>
+                <th>Выезд</th>
+                <th>Ночей</th>
+                <th>Цена</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in order.items.all %}
+            <tr>
+                <td>{{ item.booking.room }}</td>
+                <td>{{ item.booking.check_in }}</td>
+                <td>{{ item.booking.check_out }}</td>
+                <td>{{ item.nights }}</td>
+                <td>{{ item.cost }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p class="fs-5">
+        <strong>Итого:</strong> {{ order.total_cost }}
+    </p>
+
+    {% if order.status == 'forming' %}
+        <form method="post"
+              action="{% url 'orderapp:order_confirm' order.id %}"
+              class="d-inline">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">
+                Подтвердить заказ
+            </button>
+        </form>
+
+        <a href="{% url 'orderapp:order_cancel' order.id %}"
+           class="btn btn-danger ms-2">
+            Отменить заказ
+        </a>
+    {% endif %}
+</div>
+{% endblock %}
+

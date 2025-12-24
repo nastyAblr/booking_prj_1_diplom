@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Отзывы для {{ hotel.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Отзывы для {{ hotel.name }}</h2>
+    <a href="{% url 'mainapp:review_create' hotel.id %}" class="btn btn-primary mb-3">Оставить отзыв</a>
+    <a href="{% url 'mainapp:hotel_list' %}" class="btn btn-secondary mb-3">Назад к отелям</a>
+
+    {% if reviews %}
+        <ul class="list-group">
+        {% for review in reviews %}
+            <li class="list-group-item">
+                <strong>{{ review.user.username }}</strong> — {{ review.rating }}/5
+                <p>{{ review.comment }}</p>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Пока нет отзывов.</p>
+    {% endif %}
+</div>
+{% endblock %}

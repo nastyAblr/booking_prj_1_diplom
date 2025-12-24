@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Бронирование</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        {{ form.room.label_tag }}
+        {{ form.room }}
+        {% if form.room.errors %}
+            <div class="text-danger">{{ form.room.errors }}</div>
+        {% endif %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.check_in.label_tag }}
+        {{ form.check_in }}
+        {% if form.check_in.errors %}
+            <div class="text-danger">{{ form.check_in.errors }}</div>
+        {% endif %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.check_out.label_tag }}
+        {{ form.check_out }}
+        {% if form.check_out.errors %}
+            <div class="text-danger">{{ form.check_out.errors }}</div>
+        {% endif %}
+    </div>
+
+    <button type="submit" class="btn btn-success">Забронировать</button>
+    <a href="{% url 'mainapp:main' %}" class="btn btn-secondary mt-3">Назад</a>
+</form>
+{% endblock %}
+

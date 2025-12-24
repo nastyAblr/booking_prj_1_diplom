@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Редактирование профиля{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow-sm p-4">
+
+                <h3 class="text-center mb-4">Редактирование профиля</h3>
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <!-- Аватар -->
+                    <div class="mb-3 text-center">
+                        {% if user.avatar %}
+                            <img src="{{ user.avatar.url }}" class="rounded-circle mb-3" width="140" height="140">
+                        {% else %}
+                            <img src="{% static 'img/default_avatar.png' %}" class="rounded-circle mb-3" width="140" height="140">
+                        {% endif %}
+                    </div>
+
+                    <!-- Данные пользователя -->
+                    <h5 class="mb-3">Основные данные</h5>
+
+                    <div class="mb-3">
+                        {{ user_form.username.label_tag }}
+                        {{ user_form.username }}
+                        {{ user_form.username.errors }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ user_form.email.label_tag }}
+                        {{ user_form.email }}
+                        {{ user_form.email.errors }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ user_form.avatar.label_tag }}
+                        {{ user_form.avatar }}
+                        {{ user_form.avatar.errors }}
+                    </div>
+
+                    <!-- Профиль -->
+                    <h5 class="mb-3">Дополнительная информация</h5>
+
+                    <div class="mb-3">
+                        {{ profile_form.tagline.label_tag }}
+                        {{ profile_form.tagline }}
+                        {{ profile_form.tagline.errors }}
+                    </div>
+
+                    <button class="btn btn-primary w-100" type="submit">
+                        Сохранить изменения
+                    </button>
+                </form>
+
+                <a href="{% url 'userapp:profile' %}" class="btn btn-outline-secondary w-100 mt-3">
+                    Назад в профиль
+                </a>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

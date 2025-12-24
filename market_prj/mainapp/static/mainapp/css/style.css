@@ -1,0 +1,110 @@
+
+#carouselExampleIndicators {
+    height: 420px;          /* стало выше */
+    max-width: 1100px;       /* уже, чем экран */
+    margin: 0 auto;         /* по центру */
+    overflow: hidden;
+}
+
+/* Слайды */
+#carouselExampleIndicators .carousel-item {
+    height: 320px;
+}
+
+/* Картинки */
+#carouselExampleIndicators img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* ===== КНОПКИ (общие) ===== */
+
+.btn-clean {
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #f8f9fa;
+    color: #333;
+    text-decoration: none;
+}
+
+.btn-clean:hover {
+    background: #e9ecef;
+}
+
+
+
+/* Отступ для footer */
+footer {
+    margin-top: 40px;
+}
+
+/* ===== ЗАГОЛОВОК С ГРАДИЕНТОМ ===== */
+
+.gradient-title {
+    font-size: 2.2rem;
+    background: linear-gradient(4deg, #548cff 10%, #f900bf 90%);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+/* ===== КНОПКИ ОТЕЛЯ (ВОТ СЮДА) ===== */
+.hotel-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.btn-book {
+    padding: 8px 10px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #548cff, #f900bf);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.btn-review {
+    padding: 6px 10px;
+    border-radius: 6px;
+    background: #f8f9fa;
+    color: #0d6efd;
+    border: 1px solid #dee2e6;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.btn-book:hover {
+    opacity: 0.9;
+}
+
+.btn-review:hover {
+    background: #e9ecef;
+}
+
+.profile-card {
+    max-width: 400px;   /* максимальная ширина карточки */
+    margin: 0 auto;     /* центрирование */
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    object-fit: cover; /* обрезает лишнее, если фото не квадратное */
+}
+@media (max-width: 576px) {
+    .profile-avatar {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+.profile-card .btn {
+    min-width: 150px;
+}
+.list-group-item {
+    word-wrap: break-word;
+}

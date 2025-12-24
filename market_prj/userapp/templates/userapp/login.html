@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 400px;">
+    <h2 class="mb-4 text-center">Вход</h2>
+
+    <form method="post">
+        {% csrf_token %}
+
+        {{ login_form.non_field_errors }}
+
+        <div class="mb-3">
+            {{ login_form.username.label_tag }}
+            {{ login_form.username.errors }}
+            {{ login_form.username }}
+        </div>
+
+        <div class="mb-3">
+            {{ login_form.password.label_tag }}
+            {{ login_form.password.errors }}
+            {{ login_form.password }}
+        </div>
+
+        {% if next %}
+            <input type="hidden" name="next" value="{{ next }}">
+        {% endif %}
+
+        <button type="submit" class="btn btn-primary w-100">
+            Войти
+        </button>
+    </form>
+
+    <p class="mt-3 text-center">
+        Нет аккаунта?
+        <a href="{% url 'userapp:register' %}">Зарегистрироваться</a>
+    </p>
+</div>
+{% endblock %}
