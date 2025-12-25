@@ -1,6 +1,7 @@
 from mainapp.models import ListOfCountries, Regions, Hotel, Room
 from django import forms
 from .models import Review, Booking
+#from datetime import date
 
 
 class ListOfCountriesForm(forms.ModelForm):
@@ -76,7 +77,7 @@ class RoomForm(forms.ModelForm):
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        fields = ['hotel', 'comment', 'rating']
+        fields = ['comment', 'rating']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -100,17 +101,17 @@ class BookingForm(forms.ModelForm):
             ),
         }
 
-from datetime import date
 
-today = date.today().isoformat()
 
-widgets = {
-    'check_in': forms.DateInput(attrs={
-        'type': 'date',
-        'min': today
-    }),
-    'check_out': forms.DateInput(attrs={
-        'type': 'date',
-        'min': today
-    }),
-}
+# today = date.today().isoformat()
+#
+# widgets = {
+#     'check_in': forms.DateInput(attrs={
+#         'type': 'date',
+#         'min': today
+#     }),
+#     'check_out': forms.DateInput(attrs={
+#         'type': 'date',
+#         'min': today
+#     }),
+# }

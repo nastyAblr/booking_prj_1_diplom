@@ -1,16 +1,16 @@
 
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404
 from django.shortcuts import redirect
 
-from mainapp.models import Hotel, Room, Regions, ListOfCountries
+
+from mainapp.models import (Hotel, Room, Regions,
+                            ListOfCountries, Booking, Review)
 from mainapp.forms import RoomForm, HotelForm, RegionForm, ListOfCountriesForm, ReviewForm, BookingForm
 
-from .forms import BookingForm
-from .models import Room, Booking
-
 from django.core.exceptions import ValidationError
-from django.shortcuts import render, get_object_or_404
-from .models import Hotel, Review
+
+
 
 
 # Главная
@@ -61,6 +61,7 @@ def room_detail(request, pk):
 
 
 # Создание бронирования
+@login_required
 def booking_create(request):
     room_id = request.GET.get('room')
 

@@ -15,14 +15,14 @@ class CustomUser(AbstractUser):
 
 class CustomUserProfile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    tagline = models.CharField(verbose_name='теги', max_length=128, blank=True)
 
     class Meta:
         verbose_name = 'Профиль пользователя'
         verbose_name_plural = 'Профили пользователей'
         ordering = ('user',)
 
-    tagline = models.CharField(
-        verbose_name='теги', max_length=128, blank=True)
+
 
     def __str__(self):
         return f'Профиль {self.user.username}'

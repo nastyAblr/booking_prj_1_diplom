@@ -42,7 +42,7 @@ class Hotel(models.Model):
     name = models.CharField('название', max_length=128)
     description = models.TextField('описание', blank=True)
 
-    rating = models.DecimalField(max_digits=5, decimal_places=1, null=True, blank=True)
+    rating = models.DecimalField(max_digits=5, decimal_places=1, null=True, blank=True) # по рейтингу максимальное значение 5, после запятой одна цифра
     main_image = models.ImageField(upload_to='hotel_photos/', blank=True, null=True)
     is_active = models.BooleanField(default=True)
 
@@ -141,6 +141,17 @@ class Booking(models.Model):
 
         if not Booking.is_room_available(self.room, self.check_in, self.check_out):
             raise ValidationError('Номер уже забронирован на выбранные даты')
+
+# def clean(self):
+#     if self.check_in and self.check_out:
+#         if self.check_out <= self.check_in:
+#             raise ValidationError('Дата выезда должна быть позже даты заезда')
+#
+#         if not Booking.is_room_available(self.room, self.check_in, self.check_out):
+#             raise ValidationError('Номер уже забронирован на выбранные даты')
+#
+#     if not self.room:
+#         raise ValidationError({'room': 'Номер не выбран'})
 
 
 class Review(models.Model):
